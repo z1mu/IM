@@ -21,6 +21,13 @@ public class IndexController {
 
     @GetRoute("/")
     public String index(Request request, Response response){
+        /**
+         * @Author: zimu
+         * @Description: 首页路由
+         * @Date 23:40 2019-04-15
+         * @Param [request, response]
+         * @return java.lang.String
+         **/
         String access_token = indexService.handleParams(request);
         indexService.getSettings(request);
         indexService.getLinks(request,response, access_token);
