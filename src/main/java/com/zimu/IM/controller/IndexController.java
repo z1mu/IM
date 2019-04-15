@@ -2,6 +2,7 @@ package com.zimu.IM.controller;
 
 import com.blade.mvc.annotation.GetRoute;
 import com.blade.mvc.annotation.Path;
+import com.blade.mvc.http.Request;
 import com.blade.mvc.http.Response;
 
 /**
@@ -14,7 +15,8 @@ import com.blade.mvc.http.Response;
 public class IndexController {
 
     @GetRoute("/")
-    public void index(Response response){
-        response.text("hello world!");
+    public String index(Request request){
+        request.attribute("name", "zimu");
+        return "index";
     }
 }
