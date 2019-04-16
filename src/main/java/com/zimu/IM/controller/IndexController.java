@@ -34,4 +34,14 @@ public class IndexController {
         return "index";
     }
 
+    @GetRoute("/index")
+    public void index_1(Response response){
+        response.redirect("/");
+    }
+
+    @GetRoute("/index.html")
+    public void index_html(Response response){
+        response.redirect("/");
+    }
+
 }

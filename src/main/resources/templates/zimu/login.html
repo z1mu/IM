@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html">
+
+<title>后台登录</title>
+<meta name="author" content="DeathGhost">
+<link rel="stylesheet" type="text/css" href="/static/css/style.css" tppabs="/static/css/style.css">
+<style>
+body{height:100%;background:#16a085;overflow:hidden;}
+canvas{z-index:-1;position:absolute;}
+
+.imgCode {
+   /*position: relative;*/
+   width: 117px;
+   height: 42px;
+   /*top: 10px;*/
+}
+</style>
+<script src="/static/js/jquery.js"></script>
+ <script src="/static/js/login.js"></script>
+<script src="/static/js/Particleground.js" tppabs="/static/js/Particleground.js"></script>
+<script>
+$(document).ready(function() {
+
+  //粒子背景特效
+  $('body').particleground({
+    dotColor: '#5cbdaa',
+    lineColor: '#5cbdaa'
+  });
+  //验证码
+ getImgCode();
+  //测试提交，对接程序删除即可
+  $(".submit_btn").click(function(){
+	  location.href="https://www.baidu.com";
+	  });
+});
+</script>
+</head>
+<body>
+<dl class="admin_login">
+ <dt>
+  <strong>IM后台管理系统</strong>
+  <em>Management System</em>
+ </dt>
+ <dd class="user_icon">
+  <input type="text" placeholder="账号" class="login_txtbx">
+ </dd>
+ <dd class="pwd_icon">
+  <input type="password" placeholder="密码" class="login_txtbx">
+ </dd>
+ <dd class="val_icon">
+  <div class="checkcode">
+    <input type="text" id="J_codetext" placeholder="验证码" maxlength="4" class="login_txtbx">
+  </div>
+  <img src="" class="imgCode" id="imgCode" onclick="getImgCode()">
+ </dd>
+ <dd>
+  <input type="button" value="立即登陆" class="submit_btn">
+ </dd>
+ <dd>
+  <p>© 2019-2020 zimu 版权所有</p>
+
+ </dd>
+</dl>
+</body>
+</html>
