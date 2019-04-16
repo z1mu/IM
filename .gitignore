@@ -9,3 +9,4 @@ out
 gen
 target/
 /src/main/resources/app.properties
+/src/main/java/com/zimu/IM/utils/QueryTools.java
