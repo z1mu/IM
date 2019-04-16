@@ -79,6 +79,12 @@
             <artifactId>anima</artifactId>
             <version>0.2.7-SNAPSHOT</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.31</version>
+        </dependency>
     </dependencies>
 
 </project>
