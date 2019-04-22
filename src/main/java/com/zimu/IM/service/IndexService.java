@@ -37,19 +37,23 @@ public class IndexService {
          * @return void
          **/
         if (access_token.equals("")) {
-            List<Zimu_link> links = select().from(Zimu_link.class).where("level_id", 0).all();
+            List<Zimu_link> links = select().from(Zimu_link.class).where("levelId", 0).all();
             request.attribute("links", links);
             return;
         }else {
-            Zimu_level level = select("level_id")
+            Zimu_level level = select("levelId")
                     .from(Zimu_level.class)
-                    .where("level_access_token", access_token)
+                    .where("levelAccessToken", access_token)
                     .one();
-            Integer level_id = level.getLevel_id();
-            List<Zimu_link> links = select().from(Zimu_link.class).lte("level_id", level_id).all();
-            request.attribute("links", links);
-            response.cookie("key", access_token, 604800);
-            return;
+            if (level != null) {
+                Integer level_id = level.getLevelId();
+                List<Zimu_link> links = select().from(Zimu_link.class).lte("levelId", level_id).all();
+                request.attribute("links", links);
+                response.cookie("key", access_token, 604800);
+            }else {
+                List<Zimu_link> links = select().from(Zimu_link.class).where("levelId", 0).all();
+                request.attribute("links", links);
+            }
         }
 
     }

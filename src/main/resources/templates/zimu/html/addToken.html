@@ -1,0 +1,75 @@
+#include("../head.html")
+  
+  <body class="form-wrap" >
+
+  <div class="layui-fluid">
+    <div class="layui-card">
+      <div class="layui-card-header">新增Token</div>
+      <div class="layui-card-body" style="padding: 15px;">
+        <form class="layui-form" action="" lay-filter="component-form-group">
+
+          <div class="layui-form-item">
+            <div class="layui-inline">
+              <label class="layui-form-label">级别选择</label>
+              <div class="layui-input-inline">
+                <select name="modules" id="levelid" lay-verify="required" lay-search="">
+                  <option value="">（数值越大，级别越高）</option>
+                  #for(Zimu_level level : levels)
+                  <option value="$!{level.levelId}">$!{level.levelId}</option>
+                  #end
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label">Token </label>
+            <div class="layui-input-block">
+              <input type="text" name="token" id="token" lay-verify="title" autocomplete="off" placeholder="手动输入Token" class="layui-input">
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label">生成Token</label>
+            <div class="layui-input-block">
+              <button type="button" class="layui-btn layui-btn-warm" onclick="createToken()" >自动生成</button>
+            </div>
+          </div>
+
+
+          <div class="layui-form-item layui-layout-admin">
+            <div class="layui-input-block">
+              <div class="layui-footer" style="left: 0;">
+                <button  type="button" class="layui-btn" onclick="doAddToken()">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+    
+<script>
+
+  function createToken() {
+    $("#token").val(Math.random().toString(36).substr(2));
+  }
+  function doAddToken() {
+
+    $.post("doAddToken", {
+      levelid : $('#levelid').val(),
+      token : $('#token').val()
+    }, function (res) {
+      layer.msg(res.msg);
+
+    }, 'json');
+  }
+</script>
+
+
+
+<style id="LAY_layadmin_theme">.layui-side-menu,.layadmin-pagetabs .layui-tab-title li:after,.layadmin-pagetabs .layui-tab-title li.layui-this:after,.layui-layer-admin .layui-layer-title,.layadmin-side-shrink .layui-side-menu .layui-nav>.layui-nav-item>.layui-nav-child{background-color:#20222A !important;}.layui-nav-tree .layui-this,.layui-nav-tree .layui-this>a,.layui-nav-tree .layui-nav-child dd.layui-this,.layui-nav-tree .layui-nav-child dd.layui-this a{background-color:#009688 !important;}.layui-layout-admin .layui-logo{background-color:#20222A !important;}</style>
+</body>
+
+
+</html>

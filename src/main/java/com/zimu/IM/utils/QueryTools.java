@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Date;
 
 /**
  * @author zimu
@@ -27,17 +28,20 @@ public class QueryTools {
          * @Param [ip]
          * @return java.lang.String
          **/
-        String url  =   "http://api.ip138.com/query/?ip="+ip+"&datatype=jsonp&callback=&token={你的token}";
+        String url  =   "http://iploc.market.alicloudapi.com/v3/ip?ip="+ip;
         try {
             URL u = new URL(url);
             HttpURLConnection httpURLConnection = (HttpURLConnection) u.openConnection();
+            httpURLConnection.setRequestMethod("GET");
+            httpURLConnection.setRequestProperty("Authorization", "APPCODE 3a9893830aff456ea56a44f20ad44bd4");
             httpURLConnection.connect();
             BufferedReader reader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream(), "utf-8"));
             String  data    =   reader.readLine();
             JSONObject object = (JSONObject) JSONObject.parse(data);
-            return object.getString("data");
+            return object.toJSONString();
         } catch (Exception e) {
             e.printStackTrace();
+            System.out.println(new Date().getTime());
             return "未查询到该IP地址！";
         }
     }

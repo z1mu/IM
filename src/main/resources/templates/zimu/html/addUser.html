@@ -1,0 +1,86 @@
+#include("../head.html")
+  
+  <body class="form-wrap" >
+
+  <div class="layui-fluid">
+    <div class="layui-card">
+      <div class="layui-card-header">新增后台用户</div>
+      <div class="layui-card-body" style="padding: 15px;">
+        <form class="layui-form" action="" lay-filter="component-form-group">
+          <div class="layui-form-item">
+            <label class="layui-form-label">账号 </label>
+            <div class="layui-input-inline">
+              <input type="text" id="username" name="username" required lay-verify="username"
+                     autocomplete="off" class="layui-input" >
+            </div>
+            <div class="layui-form-mid layui-word-aux">
+              <span class="x-red">*</span>将会成为您唯一的登入名
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <label for="password" class="layui-form-label">
+              <span class="x-red">*</span>密码
+            </label>
+            <div class="layui-input-inline">
+              <input type="password" id="password"  name="old_pass" required lay-verify="old_pass"
+                     autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux">
+              6到16个字符
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <label for="repassword" class="layui-form-label">
+              <span class="x-red">*</span>确认密码
+            </label>
+            <div class="layui-input-inline">
+              <input type="password" id="repassword" name="pass" required lay-verify="pass"
+                     autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux">
+              6到16个字符
+            </div>
+          </div>
+
+
+
+          <div class="layui-form-item layui-layout-admin">
+            <div class="layui-input-block">
+              <div class="layui-footer" style="left: 0;">
+                <button type="button" class="layui-btn" onclick="createUser()">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+    
+<script>
+  function createUser() {
+    var username = $('#username').val();
+    var password = $('#password').val();
+    var repassword = $('#repassword').val();
+    if (password !== repassword) {
+      layer.msg("密码不一致！");
+    }else {
+      $.post("doAddUser", {
+        username : username,
+        password : password
+      }, function (res) {
+        layer.msg(res.msg);
+      },'json')
+    }
+  }
+</script>
+  
+  
+
+
+<style id="LAY_layadmin_theme">.layui-side-menu,.layadmin-pagetabs .layui-tab-title li:after,.layadmin-pagetabs .layui-tab-title li.layui-this:after,.layui-layer-admin .layui-layer-title,.layadmin-side-shrink .layui-side-menu .layui-nav>.layui-nav-item>.layui-nav-child{background-color:#20222A !important;}.layui-nav-tree .layui-this,.layui-nav-tree .layui-this>a,.layui-nav-tree .layui-nav-child dd.layui-this,.layui-nav-tree .layui-nav-child dd.layui-this a{background-color:#009688 !important;}.layui-layout-admin .layui-logo{background-color:#20222A !important;}</style>
+</body>
+
+
+</html>

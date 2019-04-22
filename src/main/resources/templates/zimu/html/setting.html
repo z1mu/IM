@@ -1,0 +1,127 @@
+#include("../head.html")
+  
+  <body class="form-wrap" >
+
+  <div class="layui-fluid">
+    <div class="layui-card">
+      <div class="layui-card-header">网站设置</div>
+      <div class="layui-card-body" style="padding: 15px;">
+        <form class="layui-form" action="" lay-filter="component-form-group">
+          <div class="layui-form-item">
+            <label class="layui-form-label">标题</label>
+            <div class="layui-input-block">
+              <input type="text" name="title" id="title" value="$!{setting.title}" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label">网站描述</label>
+            <div class="layui-input-block">
+              <input type="text" name="username" id="description" value="$!{setting.description}" lay-verify="required" placeholder="请输入网站描述" autocomplete="off" class="layui-input">
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label">网站关键词</label>
+            <div class="layui-input-block">
+              <input type="text" name="username" id="keywords" value="$!{setting.keywords}" lay-verify="required" placeholder="请输入网站关键词" autocomplete="off" class="layui-input">
+            </div>
+          </div>
+
+          
+          <div class="layui-form-item">
+            <div class="layui-inline">
+              <label class="layui-form-label">域名</label>
+              <div class="layui-input-inline">
+                <input type="text" name="number" id="domain" value="$!{setting.domain}" lay-verify="required|number" autocomplete="off" class="layui-input">
+              </div>
+            </div>
+
+          </div>
+
+          <div class="layui-form-item">
+            <label class="layui-form-label">网站签名</label>
+            <div class="layui-input-block">
+              <input type="text" name="username" id="sign" value="$!{setting.sign}" lay-verify="required" placeholder="请输入网站签名" autocomplete="off" class="layui-input">
+            </div>
+          </div>
+          
+          <div class="layui-form-item">
+            <label class="layui-form-label">头像上传</label>
+            <div class="layui-upload">
+              <button type="button" class="layui-btn" id="test1">上传图片</button>
+              <div class="layui-upload-list">
+                <img class="layui-upload-img" id="demo1">
+                <p id="demoText"></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="layui-form-item">
+            <div class="layui-inline">
+              <label class="layui-form-label">底部名称</label>
+              <div class="layui-input-inline">
+                <input type="text" name="number" id="footer_name" value="$!{setting.footerName}" lay-verify="required|number" autocomplete="off" class="layui-input">
+              </div>
+            </div>
+
+            <div class="layui-inline">
+              <label class="layui-form-label">底部链接</label>
+              <div class="layui-input-inline">
+                <input type="text" name="number" id="footer_link" value="$!{setting.footerLink}" lay-verify="required|number" autocomplete="off" class="layui-input">
+              </div>
+            </div>
+
+            <div class="layui-inline">
+              <label class="layui-form-label">链接名称</label>
+              <div class="layui-input-inline">
+                <input type="text" name="number" id="footer_link_name" value="$!{setting.footerLinkName}" lay-verify="required|number" autocomplete="off" class="layui-input">
+              </div>
+            </div>
+
+          </div>
+
+          <div class="layui-form-item layui-layout-admin">
+            <div class="layui-input-block">
+              <div class="layui-footer" style="left: 0;">
+                <button type="button" class="layui-btn" onclick="saveSetting()">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+
+
+<style id="LAY_layadmin_theme">.layui-side-menu,.layadmin-pagetabs .layui-tab-title li:after,.layadmin-pagetabs .layui-tab-title li.layui-this:after,.layui-layer-admin .layui-layer-title,.layadmin-side-shrink .layui-side-menu .layui-nav>.layui-nav-item>.layui-nav-child{background-color:#20222A !important;}.layui-nav-tree .layui-this,.layui-nav-tree .layui-this>a,.layui-nav-tree .layui-nav-child dd.layui-this,.layui-nav-tree .layui-nav-child dd.layui-this a{background-color:#009688 !important;}.layui-layout-admin .layui-logo{background-color:#20222A !important;}</style>
+</body>
+  <script>
+    function saveSetting() {
+      var title = $('#title').val();
+      var description = $('#description').val();
+      var keywords = $('#keywords').val();
+      var domain = $('#domain').val();
+      var sign = $('#sign').val();
+      var footer_name = $('#footer_name').val();
+      var footer_link = $('#footer_link').val();
+      var footer_link_name = $('#footer_link_name').val();
+      $.post("saveSetting", {
+        title : title,
+        description : description,
+        keywords : keywords,
+        domain : domain,
+        sign : sign,
+        footer_name : footer_name,
+        footer_link : footer_link,
+        footer_link_name : footer_link_name
+
+      }, function (res) {
+        layer.msg(res.msg);
+      })
+
+    }
+  </script>
+
+</html>

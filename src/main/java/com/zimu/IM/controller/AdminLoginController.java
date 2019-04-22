@@ -1,9 +1,8 @@
 package com.zimu.IM.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.blade.ioc.annotation.Inject;
-import com.blade.mvc.annotation.GetRoute;
-import com.blade.mvc.annotation.JSON;
-import com.blade.mvc.annotation.Path;
+import com.blade.mvc.annotation.*;
 import com.blade.mvc.http.Request;
 import com.blade.mvc.http.Response;
 import com.zimu.IM.service.AdminLoginService;
@@ -34,5 +33,22 @@ public class AdminLoginController {
     @JSON
     public String getImgCode(Request request, Response response){
         return loginService.getImgCode(request, response);
+    }
+
+    @PostRoute("/login")
+    @JSON
+    public JSONObject login(Request request, Response response, @Param String username, @Param String password,  @Param String imgCode) {
+        JSONObject res = new JSONObject();
+        if (loginService.handleLogin(request, response, username,password, imgCode)){
+            res.put("status", 1);
+            res.put("msg", "登录成功!");
+            request.session().attribute("user", username);
+            return res;
+        }
+        else{
+            res.put("status", 0);
+            res.put("msg", "登录失败！");
+            return res;
+        }
     }
 }

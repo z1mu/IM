@@ -1,0 +1,62 @@
+#include("../head.html")
+  
+  <body class="layui-fluid">
+
+             
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+  <legend>链接列表</legend>
+</fieldset>
+ 
+<div class="layui-form">
+  <table class="layui-table">
+    <colgroup>
+      <col width="150">
+      <col width="150">
+      <col width="200">
+      <col>
+    </colgroup>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>级别</th>
+        <th>access_token</th>
+        <th>操作</th>
+      </tr> 
+    </thead>
+    <tbody>
+    #for(Zimu_level level : levels)
+      <tr>
+        <td>$!{for.index}</td>
+        <td>$!{level.levelId}</td>
+        <td>$!{level.levelAccessToken}</td>
+        <td><a href="javascript:void(0)" onclick="level_del('$!{level.levelId}', '$!{level.levelAccessToken}')">删除</a>  </td>
+      </tr>
+     #end
+    </tbody>
+  </table>
+</div>
+         
+
+
+<script>
+  function level_del(id, token){
+    layer.confirm('确认要删除吗？',function(){
+      $.post("delLevel", {
+        id : id,
+        token : token
+      }, function (res) {
+        if (res.status == 1) {
+          layer.msg(res.msg, {icon: 1, time: 1000});
+          window.location.reload();
+        } else {
+          layer.msg(res.msg, {icon: 2, time: 1000});
+        }
+      });
+
+    });
+  }
+</script>
+</body>
+
+
+</html>

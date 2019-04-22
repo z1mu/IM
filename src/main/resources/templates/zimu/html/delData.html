@@ -1,0 +1,60 @@
+#include("../head.html")
+  
+  <body class="form-wrap" >
+
+  <div class="layui-fluid">
+    <div class="layui-card">
+      <div class="layui-card-header">新增Token</div>
+      <div class="layui-card-body" style="padding: 15px;">
+        <form class="layui-form" action="" lay-filter="component-form-group">
+          <div class="layui-form-item">
+            <label class="layui-form-label">数据表： </label>
+            <div class="layui-input-block">
+              <input type="text" name="token" value="$!{table}" disabled id="table" lay-verify="title" autocomplete="off" placeholder="请输入删除的数量" class="layui-input">
+            </div>
+          </div>
+
+          <div class="layui-form-item">
+            <label class="layui-form-label">数量 </label>
+            <div class="layui-input-block">
+              <input type="text" name="token" id="number" lay-verify="title" autocomplete="off" placeholder="请输入删除的数量" class="layui-input">
+            </div>
+          </div>
+
+
+          <div class="layui-form-item layui-layout-admin">
+            <div class="layui-input-block">
+              <div class="layui-footer" style="left: 0;">
+                <button  type="button" class="layui-btn" onclick="delData()">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+    
+<script>
+
+  function delData() {
+
+    $.post("delTableData", {
+      dataNumber : $('#number').val(),
+      table : $('#table').val()
+
+    }, function (res) {
+      layer.msg(res.msg);
+      window.location.reload();
+    }, 'json');
+  }
+</script>
+
+
+
+<style id="LAY_layadmin_theme">.layui-side-menu,.layadmin-pagetabs .layui-tab-title li:after,.layadmin-pagetabs .layui-tab-title li.layui-this:after,.layui-layer-admin .layui-layer-title,.layadmin-side-shrink .layui-side-menu .layui-nav>.layui-nav-item>.layui-nav-child{background-color:#20222A !important;}.layui-nav-tree .layui-this,.layui-nav-tree .layui-this>a,.layui-nav-tree .layui-nav-child dd.layui-this,.layui-nav-tree .layui-nav-child dd.layui-this a{background-color:#009688 !important;}.layui-layout-admin .layui-logo{background-color:#20222A !important;}</style>
+</body>
+
+
+</html>

@@ -24,6 +24,11 @@ public class IndexReqHook implements WebHook {
     public boolean before(RouteContext routeContext) {
 
         hookService.handleLog(routeContext);
+        if (hookService.handleAdmin(routeContext)){
+            return true;
+        }else {
+            routeContext.redirect("/zimu/login");
+        }
         return true;
     }
 }

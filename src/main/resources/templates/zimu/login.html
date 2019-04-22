@@ -33,7 +33,18 @@ $(document).ready(function() {
  getImgCode();
   //测试提交，对接程序删除即可
   $(".submit_btn").click(function(){
-	  location.href="https://www.baidu.com";
+	  $.post("login", {
+	   username : $('#username').val(),
+       password : $('#password').val(),
+       imgCode  : $('#J_codetext').val()
+      }, function (res) {
+        if (res.status == 1){
+         window.location = "/zimu/index";
+        }
+        else {
+         window.location.reload();
+        }
+      },'json')
 	  });
 });
 </script>
@@ -45,14 +56,14 @@ $(document).ready(function() {
   <em>Management System</em>
  </dt>
  <dd class="user_icon">
-  <input type="text" placeholder="账号" class="login_txtbx">
+  <input type="text" placeholder="账号" class="login_txtbx" id="username">
  </dd>
  <dd class="pwd_icon">
-  <input type="password" placeholder="密码" class="login_txtbx">
+  <input type="password" placeholder="密码" class="login_txtbx" id="password">
  </dd>
  <dd class="val_icon">
   <div class="checkcode">
-    <input type="text" id="J_codetext" placeholder="验证码" maxlength="4" class="login_txtbx">
+    <input type="text" id="J_codetext" placeholder="验证码" maxlength="4"  class="login_txtbx">
   </div>
   <img src="" class="imgCode" id="imgCode" onclick="getImgCode()">
  </dd>

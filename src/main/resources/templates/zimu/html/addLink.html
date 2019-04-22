@@ -1,0 +1,73 @@
+#include("../head.html")
+  
+  <body class="form-wrap" >
+
+  <div class="layui-fluid">
+    <div class="layui-card">
+      <div class="layui-card-header">新增引导</div>
+      <div class="layui-card-body" style="padding: 15px;">
+        <form class="layui-form" action="" lay-filter="component-form-group">
+          <div class="layui-form-item">
+            <label class="layui-form-label">URL </label>
+            <div class="layui-input-block">
+              <input type="text" name="url" lay-verify="title" id="url" autocomplete="off" placeholder="请输入URL" class="layui-input">
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label">URL 名称</label>
+            <div class="layui-input-block">
+              <input type="text" name="urlName" id="urlName" lay-verify="required" placeholder="请输入URL名称" autocomplete="off" class="layui-input">
+            </div>
+          </div>
+
+          
+          <div class="layui-form-item">
+            <div class="layui-inline">
+              <label class="layui-form-label">级别选择</label>
+              <div class="layui-input-inline">
+                <select name="level" lay-verify="required" id="level" lay-search="">
+                  <option value="0">（数值越大，级别越高）</option>
+                  #for(Zimu_level level : levels)
+                  <option value="$!{level.levelId}">$!{level.levelId}</option>
+                  #end
+                </select>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="layui-form-item layui-layout-admin">
+            <div class="layui-input-block">
+              <div class="layui-footer" style="left: 0;">
+                <button type="button" class="layui-btn" onclick="doAddIndex()">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+
+
+<style id="LAY_layadmin_theme">.layui-side-menu,.layadmin-pagetabs .layui-tab-title li:after,.layadmin-pagetabs .layui-tab-title li.layui-this:after,.layui-layer-admin .layui-layer-title,.layadmin-side-shrink .layui-side-menu .layui-nav>.layui-nav-item>.layui-nav-child{background-color:#20222A !important;}.layui-nav-tree .layui-this,.layui-nav-tree .layui-this>a,.layui-nav-tree .layui-nav-child dd.layui-this,.layui-nav-tree .layui-nav-child dd.layui-this a{background-color:#009688 !important;}.layui-layout-admin .layui-logo{background-color:#20222A !important;}</style>
+</body>
+<script>
+  function doAddIndex() {
+
+    $.post("doAddIndex", {
+      url : $('#url').val(),
+      urlName : $('#urlName').val(),
+      level : $('#level').val()
+    }, function (res) {
+      layer.msg(res.msg);
+
+    }, 'json');
+  }
+
+</script>
+
+
+</html>

@@ -19,21 +19,21 @@ public class Zimu_log extends Model {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "req_ip")
-    private String  req_ip;
+    @Column(name = "reqIp")
+    private String  reqIp;
 
-    @Column(name = "req_ua")
-    private String  req_ua;
+    @Column(name = "reqUa")
+    private String  reqUa;
 
-    @Column(name = "req_access_token")
-    private String  req_access_token;
+    @Column(name = "reqAccessToken")
+    private String  reqAccessToken;
 
-    @Column(name = "req_link")
-    private String  req_link;
+    @Column(name = "reqLink")
+    private String  reqLink;
 
-    @Column(name = "req_ip_adress")
-    private String  req_ip_adress;
+    @Column(name = "reqIpAdress")
+    private String  reqIpAdress;
 
-    @Column(name = "req_time")
-    private String  req_time;
+    @Column(name = "reqTime")
+    private String  reqTime;
 }

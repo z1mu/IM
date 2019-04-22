@@ -1,0 +1,81 @@
+#include("../head.html")
+  
+  <body>
+  <br>
+  <br>
+    <div class="x-body">
+        <form class="layui-form">
+          <div class="layui-form-item">
+              <label for="username" class="layui-form-label">
+                  <span class="x-red">*</span>用户名
+              </label>
+              <div class="layui-input-inline">
+                  <input type="text" id="username" name="username" required lay-verify="username"
+                  autocomplete="off" value="$!{user}" class="layui-input" disabled>
+              </div>
+              <div class="layui-form-mid layui-word-aux">
+                  <span class="x-red">*</span>将会成为您唯一的登入名
+              </div>
+          </div>
+            <div class="layui-form-item">
+                <label for="old_pass" class="layui-form-label">
+                    <span class="x-red">*</span>旧密码
+                </label>
+                <div class="layui-input-inline">
+                    <input type="password" id="old_pass" name="old_pass" required lay-verify="old_pass"
+                           autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">
+                    6到16个字符
+                </div>
+            </div>
+          <div class="layui-form-item">
+              <label for="password" class="layui-form-label">
+                  <span class="x-red">*</span>密码
+              </label>
+              <div class="layui-input-inline">
+                  <input type="password" id="password" name="pass" required lay-verify="pass"
+                  autocomplete="off" class="layui-input">
+              </div>
+              <div class="layui-form-mid layui-word-aux">
+                  6到16个字符
+              </div>
+          </div>
+          <div class="layui-form-item">
+              <label for="repassword" class="layui-form-label">
+                  <span class="x-red">*</span>确认密码
+              </label>
+              <div class="layui-input-inline">
+                  <input type="password" id="repassword" name="repass" required lay-verify="repass"
+                  autocomplete="off" class="layui-input">
+              </div>
+          </div>
+          <div class="layui-form-item">
+              <label for="1" class="layui-form-label">
+              </label>
+              <button  id="1" type="button" class="layui-btn" onclick="updateUser()">
+                  确认修改
+              </button>
+          </div>
+      </form>
+    </div>
+    <script>
+        function updateUser() {
+            var oldpassword = $('#old_pass').val();
+            var password = $('#password').val();
+            var repassword = $('#repassword').val();
+            if (password !== repassword) {
+                layer.msg("密码不一致！");
+            }else {
+                $.post('updateUser',{
+                    oldpassword : oldpassword,
+                    password : password
+                }, function (res) {
+                    layer.msg(res.msg);
+                }, 'json')
+            }
+        }
+    </script>
+  </body>
+
+</html>

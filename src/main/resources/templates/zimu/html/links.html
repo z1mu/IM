@@ -1,0 +1,64 @@
+#include("../head.html")
+  <body class="layui-fluid">
+
+             
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+  <legend>链接列表</legend>
+</fieldset>
+ 
+<div class="layui-form">
+  <table class="layui-table">
+    <colgroup>
+      <col width="150">
+      <col width="150">
+      <col width="200">
+      <col>
+    </colgroup>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>URL</th>
+        <th>名称</th>
+        <th>级别</th>
+        <th>操作</th>
+      </tr> 
+    </thead>
+    <tbody>
+    #for(Zimu_link link : links)
+      <tr>
+        <td>$!{link.id}</td>
+        <td>$!{link.link}</td>
+        <td>$!{link.linkName}</td>
+        <td>$!{link.levelId}</td>
+        <td><a href="javascript:void(0)" onclick="link_del($!{link.id})">删除</a>   |   <a href="javascript:void(0)" onclick="x_admin_show('首页链接','editorLink?id=${link.id}', 500, 400)">修改</a></td>
+      </tr>
+     #end
+    </tbody>
+  </table>
+</div>
+         
+
+          
+
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+<script>
+  function link_del(id){
+    layer.confirm('确认要删除吗？',function(){
+      $.post("delLink", {
+        id : id
+      }, function (res) {
+        if (res.status == 1) {
+          layer.msg(res.msg, {icon: 1, time: 1000});
+          window.location.reload();
+        } else {
+          layer.msg(res.msg, {icon: 2, time: 1000});
+        }
+      });
+
+    });
+  }
+</script>
+</body>
+
+
+</html>

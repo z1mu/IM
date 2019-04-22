@@ -1,0 +1,128 @@
+#include("head.html")
+<body>
+    <!-- 顶部开始 -->
+    <div class="container">
+        <div class="logo"><a href="index.html">IM - 后台管理</a></div>
+        <div class="left_open">
+            <i title="展开左侧栏" class="iconfont">&#xe699;</i>
+        </div>
+        <ul class="layui-nav left fast-add" lay-filter="">
+          <li class="layui-nav-item">
+            <a href="javascript:;">+新增</a>
+            <dl class="layui-nav-child"> <!-- 二级菜单 -->
+              <dd><a onClick="x_admin_show('首页链接','addIndex', 500, 400)"><i class="iconfont">&#xe6a2;</i>首页引导</a></dd>
+              <dd><a onClick="x_admin_show('接入秘钥','addToken', 500, 400)"><i class="iconfont">&#xe6a8;</i>接入秘钥</a></dd>
+               <dd><a onClick="x_admin_show('后台用户','addUser', 560, 400)"><i class="iconfont">&#xe6b8;</i>后台用户</a></dd>
+            </dl>
+          </li>
+        </ul>
+        <ul class="layui-nav right" lay-filter="">
+          <li class="layui-nav-item">
+            <a href="javascript:;">$!{user}</a>
+            <dl class="layui-nav-child"> <!-- 二级菜单 -->
+              <dd><a onClick="x_admin_show('修改密码','userInfo', 550,400)">修改密码</a></dd>
+              <dd><a href="logout">退出</a></dd>
+            </dl>
+          </li>
+          <li class="layui-nav-item to-index"><a href="#">前台首页</a></li>
+        </ul>
+        
+    </div>
+    <!-- 顶部结束 -->
+    <!-- 中部开始 -->
+     <!-- 左侧菜单开始 -->
+    <div class="left-nav">
+      <div id="side-nav">
+        <ul id="nav">
+             <li >
+                <a href="javascript:;">
+                    <i class="iconfont">&#xe6eb;</i>
+                    <cite>主页</cite>
+                    <i class="iconfont nav_right">&#xe6a7;</i>
+                </a>
+                <ul class="sub-menu">
+                    <li><a _href="welcome"><i class="iconfont">&#xe6a7;</i><cite>控制台</cite></a></li >
+                </ul>
+            </li>
+             <li >
+                <a href="javascript:;">
+                    <i class="iconfont">&#xe6e4;</i>
+                    <cite>引导页管理</cite>
+                    <i class="iconfont nav_right">&#xe6a7;</i>
+                </a>
+                <ul class="sub-menu">
+                    <li><a _href="links"><i class="iconfont">&#xe6a7;</i><cite>链接列表</cite></a></li>
+                    <li><a _href="levels"><i class="iconfont">&#xe6a7;</i><cite>接入级别</cite></a></li>
+
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <i class="iconfont">&#xe726;</i>
+                    <cite>管理员管理</cite>
+                    <i class="iconfont nav_right">&#xe6a7;</i>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a _href="adminList">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>管理员列表</cite>
+                        </a>
+                    </li >
+                </ul>
+            </li>            
+
+<li>
+                <a href="javascript:;">
+                    <i class="iconfont">&#xe6ae;</i>
+                    <cite>系统设置</cite>
+                    <i class="iconfont nav_right">&#xe6a7;</i>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a _href="setting">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>网站设置</cite>
+                        </a>
+                    </li >
+                    <li>
+                        <a _href="clearData">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>数据清理</cite>
+                        </a>
+                    </li>
+                    <li>
+                        <a _href="records">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>访问日志</cite>
+                        </a>
+                    </li>
+                </ul>
+            </li>            </ul>
+      </div>
+    </div>
+    <!-- <div class="x-slide_left"></div> -->
+    <!-- 左侧菜单结束 -->
+    <!-- 右侧主体开始 -->
+    <div class="page-content">
+        <div class="layui-tab tab" lay-filter="xbs_tab" lay-allowclose="false">
+          <ul class="layui-tab-title">
+            <li class="home"><i class="layui-icon">&#xe68e;</i>我的桌面</li>
+          </ul>
+          <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">
+                <iframe src='welcome' frameborder="0" scrolling="yes" class="x-iframe"></iframe>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="page-content-bg"></div>
+    <!-- 右侧主体结束 -->
+    <!-- 中部结束 -->
+    <!-- 底部开始 -->
+    <!--<div class="footer">
+        <div class="copyright">Copyright ©2019 L-admin v2.3 All Rights Reserved</div>  
+    </div>-->
+    <!-- 底部结束 -->
+</body>
+</html>

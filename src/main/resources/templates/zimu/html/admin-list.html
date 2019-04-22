@@ -1,0 +1,66 @@
+#include("../head.html")
+  
+  <body>
+
+    <div class="x-body">
+
+      <table class="layui-table">
+        <thead>
+          <tr>
+            <th>
+              <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
+            </th>
+            <th>ID</th>
+            <th>登录名</th>
+            <th>角色</th>
+            <th>操作</th>
+        </thead>
+        <tbody>
+        #for(Zimu_admin  admin : admins)
+          <tr>
+            <td>
+              <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
+            </td>
+            <td>$!{admin.id}</td>
+            <td>$!{admin.username}</td>
+            <td>超级管理员</td>
+            <td>
+              <a title="删除" onclick="member_del(this,'${admin.id}')" href="javascript:;">
+                <i class="layui-icon">&#xe640;</i>
+              </a>
+            </td>
+          </tr>
+        #end
+        </tbody>
+      </table>
+      <div class="page">
+        <div>
+          <a class="prev" href="">&lt;&lt;</a>
+          <a class="num" href="">1</a>
+          <span class="current">2</span>
+          <a class="num" href="">3</a>
+          <a class="num" href="">489</a>
+          <a class="next" href="">&gt;&gt;</a>
+        </div>
+      </div>
+
+    </div>
+    <script>
+
+
+      /*用户-删除*/
+      function member_del(obj,id){
+          layer.confirm('确认要删除吗？',function(index){
+              $.post("delAdmin", {
+                id : id
+              }, function (res) {
+                layer.msg("删除成功！");
+                window.location.reload();
+              })
+          });
+      }
+
+    </script>
+  </body>
+
+</html>

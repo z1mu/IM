@@ -41,12 +41,25 @@ public class IndexReqHookService {
         String  req_link =   routeContext.uri();
         String  req_ip_adress   =   queryTools.queryIpAdress(req_ip);
         String  req_time    =   timeTools.currentDataTime();
-        log.setReq_ip(req_ip);
-        log.setReq_ua(req_ua);
-        log.setReq_access_token(req_access_token);
-        log.setReq_link(req_link);
-        log.setReq_ip_adress(req_ip_adress);
-        log.setReq_time(req_time);
+        log.setReqIp(req_ip);
+        log.setReqUa(req_ua);
+        log.setReqAccessToken(req_access_token);
+        log.setReqLink(req_link);
+        log.setReqIpAdress(req_ip_adress);
+        log.setReqTime(req_time);
         Integer id  =   log.save().asInt();
+    }
+
+    public Boolean handleAdmin(RouteContext routeContext) {
+        String reqLink = routeContext.uri();
+        if (reqLink.contains("login") || reqLink.contains("ImgCode"))
+            return true;
+        if (reqLink.contains("zimu")) {
+            if (routeContext.session().attribute("user") != null && !routeContext.session().attribute("user").equals("")) {
+                return true;
+            }else
+                return false;
+        }else
+            return true;
     }
 }

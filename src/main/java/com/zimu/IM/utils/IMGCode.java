@@ -53,7 +53,7 @@ public class IMGCode {
     public void doGet(Request req, Response resp)  {
         try {
             String code = getRandomString(); //获取随机验证码
-            req.session().attribute("code", code); //放入Session
+            req.session().attribute("imgCode", code); //放入Session
             int width = 100; //图片宽度
             int height = 30; //图片高度
             Color color = getRandomColor(); //随机色，用于背景色
@@ -106,5 +106,14 @@ public class IMGCode {
         String path = pathname + "static/images/yzm.jpg";
         String base64Img = Img2Base64(path);
         return "data:image/png;base64," + base64Img;
+    }
+
+    public boolean checkImgCode(Request request, String imgCode) {
+        if (imgCode!=null && request.session().attribute("imgCode").equals(imgCode)){
+            request.session().attribute("imgCode","");
+            return true;
+        }
+        request.session().attribute("imgCode","");
+        return false;
     }
 }

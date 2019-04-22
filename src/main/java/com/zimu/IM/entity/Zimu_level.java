@@ -1,6 +1,7 @@
 package com.zimu.IM.entity;
 
 import io.github.biezhi.anima.Model;
+import io.github.biezhi.anima.annotation.Column;
 import io.github.biezhi.anima.annotation.Table;
 import lombok.Data;
 
@@ -16,6 +17,9 @@ import lombok.Data;
 @Table(name = "zimu_level", pk = "id")
 public class Zimu_level extends Model {
 
-    private Integer level_id;
-    private String  level_access_token;
+    @Column(name = "levelId")
+    private Integer levelId;
+
+    @Column(name = "levelAccessToken")
+    private String  levelAccessToken;
 }
